@@ -28,3 +28,22 @@ export const shuffleArray = (array) => {
 
   return shuffled;
 };
+
+export const getPlural = (count, words) => {
+  const [one, few, many] = words;
+
+  if (count % 100 >= 11 && count % 100 <= 14) {
+    return many;
+  }
+
+  switch (count % 10) {
+    case 1:
+      return one;
+    case 2:
+    case 3:
+    case 4:
+      return few;
+    default:
+      return many;
+  }
+};
