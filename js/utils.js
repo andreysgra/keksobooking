@@ -1,3 +1,5 @@
+const FORM_SELECTORS = 'button, input, select, textarea';
+
 export const getRandomPositiveInteger = (a = 0, b = 1) => {
 
   const min = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -46,4 +48,18 @@ export const getPlural = (count, words) => {
     default:
       return many;
   }
+};
+
+export const disableForm = (form, classDisable) => {
+  form.querySelectorAll(FORM_SELECTORS)
+    .forEach((element) => element.setAttribute('disabled', ''));
+
+  form.classList.add(classDisable);
+};
+
+export const enableForm = (form, classDisable) => {
+  form.querySelectorAll(FORM_SELECTORS)
+    .forEach((element) => element.removeAttribute('disabled'));
+
+  form.classList.remove(classDisable);
 };
