@@ -1,5 +1,6 @@
 import {disableForm, enableForm} from './utils';
 import {setValidation} from './validation';
+import {offerPriceMin} from './const';
 
 const adFormElement = document.querySelector('.ad-form');
 
@@ -7,6 +8,10 @@ const onAdFormSubmit = (evt) => {
   if (!setValidation()) {
     evt.preventDefault();
   }
+};
+
+const onOfferTypeChange = (evt) => {
+  adFormElement.price.placeholder = offerPriceMin[evt.target.value];
 };
 
 const onTimeInChange = (evt) => {
@@ -23,6 +28,7 @@ export const enableAdForm = () => {
   adFormElement.addEventListener('submit', onAdFormSubmit);
   adFormElement.timein.addEventListener('change', onTimeInChange);
   adFormElement.timeout.addEventListener('change', onTimeOutChange);
+  adFormElement.type.addEventListener('change', onOfferTypeChange);
 
   enableForm(adFormElement, 'ad-form--disabled');
 };
