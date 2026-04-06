@@ -9,9 +9,20 @@ const onAdFormSubmit = (evt) => {
   }
 };
 
+const onTimeInChange = (evt) => {
+  adFormElement.timeout.value = evt.target.value;
+};
+
+const onTimeOutChange = (evt) => {
+  adFormElement.timein.value = evt.target.value;
+};
+
 export const disableAdForm = () => disableForm(adFormElement, 'ad-form--disabled');
 
 export const enableAdForm = () => {
   adFormElement.addEventListener('submit', onAdFormSubmit);
+  adFormElement.timein.addEventListener('change', onTimeInChange);
+  adFormElement.timeout.addEventListener('change', onTimeOutChange);
+
   enableForm(adFormElement, 'ad-form--disabled');
 };
