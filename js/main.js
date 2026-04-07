@@ -1,12 +1,18 @@
 import {getOffers} from './data';
-import {createPopup} from './popup';
-import {enableAdForm} from './ad-form';
+import {disableAdForm, enableAdForm} from './ad-form';
+import {addMarkers, initMap} from './map';
+import {disableMapFiltersForm, enableMapFilterForm} from './map-filters-form';
 
 const OFFERS_COUNT = 10;
 const offers = getOffers(OFFERS_COUNT);
 
-const mapCanvas = document.querySelector('#map-canvas');
+disableMapFiltersForm();
+disableAdForm();
 
-mapCanvas.append(createPopup(offers[0]));
+initMap(() => {
+  enableAdForm();
+  addMarkers(offers);
+  enableMapFilterForm();
+});
 
-enableAdForm();
+

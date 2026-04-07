@@ -1,4 +1,4 @@
-import {ErrorMessage, offerPriceMin, PRICE_MAX, RoomCapacity, TitleLength} from './const';
+import {ErrorMessage, offerPriceMin, Price, RoomCapacity, TitleLength} from './const';
 
 const adFormElement = document.querySelector('.ad-form');
 
@@ -7,13 +7,13 @@ const validateTitleLength = () =>
 
 const validatePriceMin = (value) => value >= offerPriceMin[adFormElement.type.value];
 
-const validatePriceMax = (value) => value <= PRICE_MAX;
+const validatePriceMax = (value) => value <= Price.MAX;
 
 const validateRoomCapacity = () =>
   RoomCapacity[adFormElement.rooms.value].includes(adFormElement.capacity.value);
 
 const priceMinErrorMessage = `${ErrorMessage.PRICE_MIN_INVALID}${offerPriceMin[adFormElement.type.value]}`;
-const priceMaxErrorMessage = `${ErrorMessage.PRICE_MAX_INVALID}${PRICE_MAX}`;
+const priceMaxErrorMessage = `${ErrorMessage.PRICE_MAX_INVALID}${Price.MAX}`;
 
 const pristine = new Pristine(adFormElement, {
   classTo: 'ad-form__element',
@@ -27,5 +27,7 @@ pristine.addValidator(adFormElement.price, validatePriceMin, priceMinErrorMessag
 pristine.addValidator(adFormElement.price, validatePriceMax, priceMaxErrorMessage);
 pristine.addValidator(adFormElement.rooms, validateRoomCapacity, ErrorMessage.ROOM_CAPACITY_INVALID);
 pristine.addValidator(adFormElement.capacity, validateRoomCapacity, ErrorMessage.ROOM_CAPACITY_INVALID);
+
+export const validateElement = (element) => pristine.validate(element);
 
 export const setValidation = () => pristine.validate();

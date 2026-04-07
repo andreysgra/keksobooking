@@ -26,7 +26,10 @@ export const RoomCapacity = {
   '100': ['0']
 };
 
-export const PRICE_MAX = 100000;
+export const Price = {
+  MIN: 0,
+  MAX: 100000
+};
 
 export const ErrorMessage = {
   TITLE_LENGTH_INVALID: 'Название должно содержать не менее 30 и не более 100 символов',
