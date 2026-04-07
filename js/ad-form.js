@@ -1,5 +1,5 @@
 import {disableForm, enableForm} from './utils';
-import {setValidation} from './validation';
+import {setValidation, validateElement} from './validation';
 import {offerPriceMin, Price} from './const';
 
 const adFormElement = document.querySelector('.ad-form');
@@ -21,6 +21,7 @@ noUiSlider.create(sliderElement, {
 
 sliderElement.noUiSlider.on('update', () => {
   adFormElement.price.value = sliderElement.noUiSlider.get();
+  validateElement(adFormElement.price);
 });
 
 const onAdFormSubmit = (evt) => {
@@ -31,6 +32,7 @@ const onAdFormSubmit = (evt) => {
 
 const onOfferTypeChange = (evt) => {
   adFormElement.price.placeholder = offerPriceMin[evt.target.value];
+  validateElement(adFormElement.price);
 };
 
 const onTimeInChange = (evt) => {
