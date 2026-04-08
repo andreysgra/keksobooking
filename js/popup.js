@@ -27,7 +27,7 @@ export const createPopup = (similarOffer) => {
   element.querySelector('.popup__text--time').textContent =
     `Заезд после ${offer.checkin}, выезд до ${offer.checkout}`;
 
-  if (offer.features.length > 0) {
+  if (offer.features) {
     featureList.forEach((featureItem) => {
       const isFeatureExist = offer.features.some((feature) =>
         featureItem.classList.contains(`popup__feature--${feature}`));
@@ -44,12 +44,14 @@ export const createPopup = (similarOffer) => {
     popupDescriptionElement.remove();
   }
 
-  offer.photos.forEach((photo) => {
-    const popupPhotoNode = popupPhotoElement.cloneNode();
+  if (offer.photos) {
+    offer.photos.forEach((photo) => {
+      const popupPhotoNode = popupPhotoElement.cloneNode();
 
-    popupPhotoNode.src = photo;
-    photosFragment.append(popupPhotoNode);
-  });
+      popupPhotoNode.src = photo;
+      photosFragment.append(popupPhotoNode);
+    });
+  }
 
   popupPhotoElement.remove();
   element.querySelector('.popup__photos').append(photosFragment);

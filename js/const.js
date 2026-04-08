@@ -37,3 +37,5 @@ export const ErrorMessage = {
   PRICE_MAX_INVALID: 'Стоимость должна быть не больше ',
   ROOM_CAPACITY_INVALID: 'Превышено количество гостей'
 };
+
+export const OFFERS_MAX_COUNT = 10;

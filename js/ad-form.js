@@ -1,9 +1,15 @@
 import {disableForm, enableForm} from './utils';
 import {setValidation, validateElement} from './validation';
 import {offerPriceMin, Price} from './const';
+import {uploadFailMessage, uploadSuccessMessage} from './messages';
+import {sendData} from './api';
+import {resetMap} from './map';
 
 const adFormElement = document.querySelector('.ad-form');
 const sliderElement = adFormElement.querySelector('.ad-form__slider');
+const submitButtonElement = adFormElement.querySelector('.ad-form__submit');
+const mapFiltersFormElement = document.querySelector('.map__filters');
+const resetButtonElement = adFormElement.querySelector('.ad-form__reset');
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -24,10 +30,43 @@ sliderElement.noUiSlider.on('update', () => {
   validateElement(adFormElement.price);
 });
 
+const disableSubmitButton = () => {
+  submitButtonElement.disabled = true;
+};
+
+const enableSubmitButton = () => {
+  submitButtonElement.disabled = false;
+};
+
+const resetForms = () => {
+  adFormElement.reset();
+  mapFiltersFormElement.reset();
+  sliderElement.noUiSlider.set(offerPriceMin.flat);
+  resetMap();
+};
+
+const onFailUpload = () => uploadFailMessage();
+
+const onSuccessUpload = () => {
+  uploadSuccessMessage();
+  resetForms();
+};
+
 const onAdFormSubmit = (evt) => {
-  if (!setValidation()) {
-    evt.preventDefault();
+  evt.preventDefault();
+
+  if (setValidation()) {
+    disableSubmitButton();
+
+    sendData(onSuccessUpload, onFailUpload, new FormData(evt.target))
+      .then(enableSubmitButton);
   }
+};
+
+const onAdFormReset = (evt) => {
+  evt.preventDefault();
+
+  resetForms();
 };
 
 const onOfferTypeChange = (evt) => {
@@ -61,6 +100,7 @@ export const enableAdForm = () => {
   adFormElement.timeout.addEventListener('change', onTimeOutChange);
   adFormElement.type.addEventListener('change', onOfferTypeChange);
   adFormElement.price.addEventListener('input', onPriceInput);
+  resetButtonElement.addEventListener('click', onAdFormReset);
 
   enableForm(adFormElement, 'ad-form--disabled');
 };
