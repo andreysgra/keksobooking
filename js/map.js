@@ -79,6 +79,7 @@ export const initMap = (cb) => {
 
 export const resetMap = () => {
   map.setView(CityCenter, MAP_ZOOM);
+  map.closePopup();
   mainMarker.setLatLng(CityCenter);
 };
 

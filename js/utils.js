@@ -32,3 +32,9 @@ export const enableForm = (form, classDisable) => {
 
   form.classList.remove(classDisable);
 };
+
+export const addEscapeEvent = (evt, action) => {
+  if (evt.key === 'Escape') {
+    action();
+  }
+};
