@@ -4,13 +4,14 @@ import {disableMapFiltersForm, enableMapFilterForm, setFilters} from './map-filt
 import {getData} from './api';
 import {loadFailMessage} from './messages';
 import {OFFERS_MAX_COUNT} from './const';
+import {debounce} from './utils';
 
 disableMapFiltersForm();
 disableAdForm();
 
 const onLoadSuccess = (offers) => {
   addMarkers(offers.slice(0, OFFERS_MAX_COUNT));
-  setFilters(offers, addMarkers);
+  setFilters(offers, debounce(addMarkers));
   enableMapFilterForm();
 };
 
