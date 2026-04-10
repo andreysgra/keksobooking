@@ -1,5 +1,6 @@
 import {disableForm, enableForm} from './utils.js';
 import {OFFERS_MAX_COUNT} from './const.js';
+import {addMarkers} from './map';
 
 const mapFiltersFormElement = document.querySelector('.map__filters');
 const housingTypeElement = mapFiltersFormElement.querySelector('#housing-type');
@@ -62,6 +63,8 @@ export const disableMapFiltersForm = () => disableForm(mapFiltersFormElement, 'm
 export const enableMapFilterForm = () => enableForm(mapFiltersFormElement, 'map__filters--disabled');
 
 export const setFilters = (offers, cb) => {
+  addMarkers(offers.slice(0, OFFERS_MAX_COUNT));
+
   mapFiltersFormElement.addEventListener('change', () => {
     cb(getFilteredOffers(offers).slice(0, OFFERS_MAX_COUNT));
   });
