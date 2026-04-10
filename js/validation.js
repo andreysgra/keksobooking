@@ -1,4 +1,4 @@
-import {ErrorMessage, offerPriceMin, Price, RoomCapacity, TitleLength} from './const';
+import {ErrorMessage, offerPriceMin, Price, RoomCapacity, TitleLength} from './const.js';
 
 const adFormElement = document.querySelector('.ad-form');
 

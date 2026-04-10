@@ -1,16 +1,14 @@
-import {disableAdForm, enableAdForm} from './ad-form';
-import {addMarkers, initMap} from './map';
-import {disableMapFiltersForm, enableMapFilterForm, setFilters} from './map-filters-form';
-import {getData} from './api';
-import {loadFailMessage} from './messages';
-import {OFFERS_MAX_COUNT} from './const';
-import {debounce} from './utils';
+import {disableAdForm, enableAdForm} from './ad-form.js';
+import {addMarkers, initMap} from './map.js';
+import {disableMapFiltersForm, enableMapFilterForm, setFilters} from './map-filters-form.js';
+import {getData} from './api.js';
+import {loadFailMessage} from './messages.js';
+import {debounce} from './utils.js';
 
 disableMapFiltersForm();
 disableAdForm();
 
 const onLoadSuccess = (offers) => {
-  addMarkers(offers.slice(0, OFFERS_MAX_COUNT));
   setFilters(offers, debounce(addMarkers));
   enableMapFilterForm();
 };

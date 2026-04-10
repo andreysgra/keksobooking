@@ -1,5 +1,5 @@
-import {offerType} from './const';
-import {getPlural} from './utils';
+import {offerType} from './const.js';
+import {getPlural} from './utils.js';
 
 const popupElement = document.querySelector('#card').content.querySelector('.popup');
 
