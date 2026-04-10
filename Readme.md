@@ -6,6 +6,8 @@
 
 Программирование: [Андрей Грачев](https://github.com/andreysgra/)
 
+[Демо проекта](https://andreysgra.github.io/keksobooking/)
+
 ## Используемый стек
 
 JavaScript (ES6), ES Modules.
