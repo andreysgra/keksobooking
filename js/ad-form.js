@@ -1,9 +1,9 @@
-import {disableForm, enableForm} from './utils';
-import {setValidation, validateElement} from './validation';
-import {offerPriceMin, Price} from './const';
-import {uploadFailMessage, uploadSuccessMessage} from './messages';
-import {sendData} from './api';
-import {resetMap} from './map';
+import {disableForm, enableForm} from './utils.js';
+import {setValidation, validateElement} from './validation.js';
+import {offerPriceMin, Price} from './const.js';
+import {uploadFailMessage, uploadSuccessMessage} from './messages.js';
+import {sendData} from './api.js';
+import {resetMap} from './map.js';
 
 const adFormElement = document.querySelector('.ad-form');
 const sliderElement = adFormElement.querySelector('.ad-form__slider');

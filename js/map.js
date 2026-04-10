@@ -1,4 +1,4 @@
-import {createPopup} from './popup';
+import {createPopup} from './popup.js';
 
 const addressElement = document.querySelector('#address');
 

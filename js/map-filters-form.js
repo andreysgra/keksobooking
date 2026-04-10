@@ -1,5 +1,5 @@
-import {disableForm, enableForm} from './utils';
-import {OFFERS_MAX_COUNT} from './const';
+import {disableForm, enableForm} from './utils.js';
+import {OFFERS_MAX_COUNT} from './const.js';
 
 const mapFiltersFormElement = document.querySelector('.map__filters');
 const housingTypeElement = mapFiltersFormElement.querySelector('#housing-type');
